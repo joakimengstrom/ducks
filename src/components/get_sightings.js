@@ -43,7 +43,7 @@ formatSightings = () => {
           console.log(sighting.dateTime);
           this.setState({sightings});
           return this.setState({sightings});
-          })
+  });
 }
 
 
