@@ -1,0 +1,50 @@
+.b {
+	border: thin black solid;
+	/*background-color: #ffb574; */
+	background-color: #ffecb3;
+	text-align: center;
+	width: 80%;
+	margin-right: 20%;
+	padding-bottom: 5%;
+	color: black;
+}
+.container {
+	margin: 10px auto;
+	width: 40%;
+}
+
+.order-btn {
+	list-style-type: none;
+	float: right;
+}
+
+.list {
+	font-weight: bold;
+	background-color: #ffecb3;
+	list-style-type: none;
+	padding: 1%;
+}
+
+.species-list {
+	width: 80%;
+	margin-right: 20%;
+}
+
+.message {
+	text-align: center;
+	color: green;
+	margin-top: 2%;
+	width: 80%;
+	margin-right: 20%;
+	font-size: 1.5em;
+}
+
+.species-text {
+	font-weight: bold;
+}
+
+.date {
+	font-size: 1.1em;
+	margin-bottom: 1%;
+	color: #006dcc;
+}
