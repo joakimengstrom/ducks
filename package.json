@@ -9,7 +9,7 @@
     "react-scripts": "^1.1.0"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "react-scripts start",
     "start:server": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
