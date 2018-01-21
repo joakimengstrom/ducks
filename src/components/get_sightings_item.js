@@ -3,8 +3,8 @@ import React from 'react';
 const SightingsItem = (props) => {
 	const sighting = props.sighting		
 	return (
-		<li key={sighting.id} class="list">
-          <div class="date">
+		<li key={sighting.id} className="list">
+          <div className="date">
           {sighting.dateTime}
           </div> 
           <div>

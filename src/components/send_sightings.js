@@ -23,7 +23,6 @@ class SendSighting extends React.Component {
       [name]: value,
       submitSuccess: false
     });
-    console.log(value);
   }
 
   handleSubmit = (event) => {
@@ -50,7 +49,6 @@ class SendSighting extends React.Component {
     .then((response) => response.text())
 .then((responseText) => {
   this.setState({submitSuccess : true});
-  alert(responseText);
 })
  .catch((error) => {
    console.error(error);
@@ -71,18 +69,18 @@ class SendSighting extends React.Component {
      
     return (
       <div>
-      <div class="b">
+      <div className="b">
       <h2>Add sighting</h2>
       <form onSubmit={this.handleSubmit}>
-      <div  class="form-group">
+      <div  className="form-group">
       <label>
       Species:
-      <select value={this.state.species} onChange={this.handleChange} name="species" required class="form-control">
-        {this.props.species.map((x, index) => <option key={index}  class="species-text">{x}</option>)}
+      <select value={this.state.species} onChange={this.handleChange} name="species" className="form-control">
+        {this.props.species.map((x, index) => <option key={index}  className="species-text">{x}</option>)}
       </select>
     </label>
     </div>
-      <div class="form-group">
+      <div className="form-group">
       <label>
       Description:
       <textarea 
@@ -90,10 +88,10 @@ class SendSighting extends React.Component {
       name="description"
       value={this.state.description}
       onChange={this.handleChange}
-      class="form-control" />
+      className="form-control" />
     </label>
     </div>
-    <div class="form-group">
+    <div className="form-group">
     <label>
       Quantity:
       <input 
@@ -104,10 +102,10 @@ class SendSighting extends React.Component {
         type="number"
       value={this.state.quantity}
       onChange={this.handleChange}
-      class="form-control" />
+      className="form-control" />
     </label>
     </div>
-    <div class="form-group">
+    <div className="form-group">
     <label>
       Time of sighting:
       <input
@@ -117,15 +115,15 @@ class SendSighting extends React.Component {
         step="1"
       value={this.state.dateTime}
       onChange={this.handleChange}
-      class="form-control" />
+      className="form-control" />
     </label>
     </div>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" className="btn btn-primary">
     Send 
     </button>
     </form>
     </div>
-    <div class="message">{message}</div>
+    <div className="message">{message}</div>
     </div>
     );
   }

@@ -10,8 +10,6 @@ import Sightings from './components/get_sightings';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleGetSightings = this.handleGetSightings.bind(this);
-    this.handleSendSightings = this.handleSendSightings.bind(this);
     this.state = {
       value: "sendSightings",
         species: [] 
@@ -26,8 +24,6 @@ class App extends React.Component {
           response.status);
         return;
       }
-
-      // Examine the text in the response
       response.json().then(data => {
         this.setState({species: data});
       });
@@ -38,11 +34,11 @@ class App extends React.Component {
   });
 }
 
-  handleSendSightings () {
+  handleSendSightings = () => {
     this.setState({value: "sendSightings"});
   }
 
-  handleGetSightings () {
+  handleGetSightings = () => {
     this.setState({value: "getSightings"});
   }
 

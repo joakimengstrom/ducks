@@ -40,7 +40,6 @@ formatSightings = () => {
           sighting.dateTime = sighting.dateTime.replace("Z", " ").replace("T", " ");
           // Capitalizing the first letter for species
           sighting.species = sighting.species.charAt(0).toUpperCase() + sighting.species.slice(1);
-          console.log(sighting.dateTime);
           this.setState({sightings});
           return this.setState({sightings});
   });
@@ -88,8 +87,8 @@ handleOlderFirst = () => {
           
     return (
       <div>
-      <ul class="list-group list">
-        <li class="order-btn"> {button}</li>
+      <ul className="list-group list">
+        <li className="order-btn"> {button}</li>
         {sightings} 
       </ul>
       </div>
@@ -99,7 +98,7 @@ handleOlderFirst = () => {
 
 function NewerButton(props) {
   return (
-    <button onClick={props.onClick} class="btn btn-primary">
+    <button onClick={props.onClick} className="btn btn-primary">
     Newest first
     </button>
     )
@@ -107,7 +106,7 @@ function NewerButton(props) {
 
 function OlderButton(props) {
   return (
-    <button onClick={props.onClick} class="btn btn-primary">
+    <button onClick={props.onClick} className="btn btn-primary">
     Oldest first
     </button>
     )
