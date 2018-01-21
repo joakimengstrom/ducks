@@ -13,6 +13,11 @@
 	width: 40%;
 }
 
+@media (min-width:1025px) 
+{ .container 
+	{ width: 100% !important;} 
+}
+
 .order-btn {
 	list-style-type: none;
 	float: right;
