@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-   fetch('https://secret-everglades-42646.herokuapp.com/species')
+   fetch('http://localhost:8081/species')
   .then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
