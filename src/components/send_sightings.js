@@ -59,6 +59,7 @@ class SendSighting extends React.Component {
       quantity: '',
       dateTime: '',
     });
+    this.props.onFormSend();
   }
 
   render() {

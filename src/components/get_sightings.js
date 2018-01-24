@@ -7,34 +7,17 @@ class Sightings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sightings : [],
       order : 'newer_first'
     };
   }
 
   componentDidMount() {
-   fetch('http://localhost:8081/sightings')
-  .then((response) => {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
-        return;
-      }
-      response.json().then(data => {
-        this.setState({sightings: data});
-        // Initializes list as newest first
-        this.handleNewerFirst();
-        this.formatSightings();
-        });
-    }
-  )
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
+      this.handleNewerFirst();
+      this.formatSightings();
 }
 
 formatSightings = () => {
-  const sightings = this.state.sightings;
+  const sightings = this.props.sightings;
   sightings.map((sighting) => {
           // Changing the format for dateTime from ISO
           sighting.dateTime = sighting.dateTime.replace("Z", " ").replace("T", " ");
@@ -47,7 +30,7 @@ formatSightings = () => {
 
 
 handleNewerFirst = () => {
-  const sightings = this.state.sightings;
+  const sightings = this.props.sightings;
   this.setState({order : 'newer_first'});
   // Sorting sightings by date with the newest first
   sightings.sort(function(a,b){
@@ -59,7 +42,7 @@ handleNewerFirst = () => {
 } 
 
 handleOlderFirst = () => {
-  const sightings = this.state.sightings;
+  const sightings = this.props.sightings;
   this.setState({order : 'older_first'});
   // Sorting sightings by date with the oldest first
   sightings.sort(function(a,b){
@@ -73,7 +56,7 @@ handleOlderFirst = () => {
 
   render () {
     var button = null;
-    const sightings = this.state.sightings.map((sighting) => {
+    const sightings = this.props.sightings.map((sighting) => {
       return <SightingsItem sighting={sighting} key={sighting.id} /> 
     })
     if (this.state.order === 'older_first') {

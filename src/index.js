@@ -12,13 +12,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       value: "sendSightings",
-        species: [] 
+      species: [], 
+      sightings: []
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.fetchSpecies();
+    this.fetchSightings();
+  }
+
+  // Updates sightings when user sent new sighting
+  updateSightings = () => {
+    this.fetchSightings(true);
+  }
+
+  fetchSpecies = () => {
    fetch('http://localhost:8081/species')
-  .then((response) => {
+   .then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
@@ -34,6 +45,26 @@ class App extends React.Component {
   });
 }
 
+  fetchSightings = (fetchUntilDifferent=false) => {
+   fetch('http://localhost:8081/sightings')
+  .then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      response.json().then(data => {
+        if(data.length === this.state.sightings.length && fetchUntilDifferent) {
+        this.fetchSightings(true);
+        return;
+        }
+        this.setState({sightings: data});
+        });
+      console.log(this.state.sightings);
+    }
+  )
+}
+
   handleSendSightings = () => {
     this.setState({value: "sendSightings"});
   }
@@ -44,6 +75,7 @@ class App extends React.Component {
 
 
   render () {
+    const sightings = this.state.sightings;
     const species = this.state.species.map((x) => {
     return x.name.charAt(0).toUpperCase() + x.name.slice(1);
     })
@@ -51,14 +83,14 @@ class App extends React.Component {
     let view = null;
     if (value === "sendSightings") {
       if (species.length > 0) {
-        view = <SendSighting species={species}/> 
+        view = <SendSighting species={species} onFormSend={this.updateSightings}/> 
       }
       else {
         view = null;
       }
     }
     else {
-      view = <Sightings />
+      view = <Sightings sightings={sightings} />
     }
     return (
       <div className="container">
