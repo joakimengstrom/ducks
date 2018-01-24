@@ -44,7 +44,7 @@ class SendSighting extends React.Component {
     // if input is valid 
     else {
     var name = this.state.species.toLowerCase();
-    fetch('https://secret-everglades-42646.herokuapp.com/sightings', {
+    fetch('http://localhost:8081/sightings', {
       method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({

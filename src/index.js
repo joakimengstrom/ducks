@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   fetchSpecies = () => {
-   fetch('https://secret-everglades-42646.herokuapp.com/species')
+   fetch('http://localhost:8081/species')
    .then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
@@ -46,7 +46,7 @@ class App extends React.Component {
 }
 
   fetchSightings = (fetchUntilDifferent=false) => {
-   fetch('https://secret-everglades-42646.herokuapp.com/sightings')
+   fetch('http://localhost:8081/sightings')
   .then((response) => {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
