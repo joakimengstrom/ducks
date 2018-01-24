@@ -10,7 +10,8 @@ class SendSighting extends React.Component {
       description: '',
       quantity: '',
       dateTime: '',
-      submitSuccess: false
+      submitSuccess: false,
+      submitInvalid: false,
     };
   }
 
@@ -21,7 +22,8 @@ class SendSighting extends React.Component {
 
     this.setState({
       [name]: value,
-      submitSuccess: false
+      submitSuccess: false,
+      submitInvalid: false
     });
   }
 
@@ -34,8 +36,14 @@ class SendSighting extends React.Component {
     else {
       dateTime += ':00Z';
     }
-    var name = this.state.species.toLowerCase();
     var number = Number(this.state.quantity);
+    // Checks validity of input
+    if (isNaN(Date.parse(dateTime)) || isNaN(number) || number === 0 || !(this.props.species.includes(this.state.species))) {
+      this.setState({submitInvalid: true});
+    }
+    // if input is valid 
+    else {
+    var name = this.state.species.toLowerCase();
     fetch('https://secret-everglades-42646.herokuapp.com/sightings', {
       method: 'post',
       headers: {'Content-Type':'application/json'},
@@ -61,11 +69,15 @@ class SendSighting extends React.Component {
     });
     this.props.onFormSend();
   }
+  }
 
   render() {
     var message = null;
     if(this.state.submitSuccess){
       message = "Your sighting was succesfully saved!";
+    }
+    if(this.state.submitInvalid) {
+      message = "Invalid input!";
     }
      
     return (

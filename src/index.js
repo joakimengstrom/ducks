@@ -60,7 +60,6 @@ class App extends React.Component {
         }
         this.setState({sightings: data});
         });
-      console.log(this.state.sightings);
     }
   )
 }
