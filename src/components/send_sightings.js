@@ -30,21 +30,22 @@ class SendSighting extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     var dateTime = this.state.dateTime;
-    if (dateTime.length === 19) {
-      dateTime += 'Z';
-    }
-    else {
-      dateTime += ':00Z';
-    }
     var number = Number(this.state.quantity);
+    console.log(isNaN(dateTime));
     // Checks validity of input
     if (isNaN(Date.parse(dateTime)) || isNaN(number) || number === 0 || !(this.props.species.includes(this.state.species))) {
       this.setState({submitInvalid: true});
     }
     // if input is valid 
     else {
+      if (dateTime.length === 19) {
+      dateTime += 'Z';
+    }
+    else {
+      dateTime += ':00Z';
+    }
     var name = this.state.species.toLowerCase();
-    fetch('http://localhost:8081/sightings', {
+    fetch('https://secret-everglades-42646.herokuapp.com/sightings', {
       method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
