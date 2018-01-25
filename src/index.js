@@ -27,6 +27,7 @@ class App extends React.Component {
     this.fetchSightings(true);
   }
 
+  // Fetches all species from server
   fetchSpecies = () => {
    fetch('http://localhost:8081/species')
    .then((response) => {
@@ -44,7 +45,7 @@ class App extends React.Component {
     console.log('Fetch Error :-S', err);
   });
 }
-
+  // Fetches all sightings from server
   fetchSightings = (fetchUntilDifferent=false) => {
    fetch('http://localhost:8081/sightings')
   .then((response) => {

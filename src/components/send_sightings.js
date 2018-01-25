@@ -31,7 +31,6 @@ class SendSighting extends React.Component {
     event.preventDefault();
     var dateTime = this.state.dateTime;
     var number = Number(this.state.quantity);
-    console.log(isNaN(dateTime));
     // Checks validity of input
     if (isNaN(Date.parse(dateTime)) || isNaN(number) || number === 0 || !(this.props.species.includes(this.state.species))) {
       this.setState({submitInvalid: true});
